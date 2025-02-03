@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard - Bus Management System{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-4">Create Bus Route</h1>
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="routeName">Bus Route Name</label>
+            <input type="text" class="form-control" id="routeName" name="routeName" required>
+        </div>
+        <div class="form-group">
+            <label for="routeNumber">Route Number</label>
+            <input type="number" class="form-control" id="routeNumber" name="routeNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="source">Source</label>
+            <select class="form-control" id="source" name="source" required>
+                {% for stop in stops %}
+                    <option value="{{ stop.id }}">{{ stop.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="destination">Destination</label>
+            <select class="form-control" id="destination" name="destination" required>
+                {% for stop in stops %}
+                    <option value="{{ stop.id }}">{{ stop.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="departureTime">Departure Time</label>
+            <input type="time" class="form-control" id="departureTime" name="departureTime" required>
+        </div>
+        <div class="form-group">
+            <label for="arrivalTime">Arrival Time</label>
+            <input type="time" class="form-control" id="arrivalTime" name="arrivalTime" required>
+        </div>
+        <div class="form-group">
+            <label for="journeyDuration">Journey Duration (in minutes)</label>
+            <input type="number" class="form-control" id="journeyDuration" name="journeyDuration" required>
+        </div>
+        <div class="form-group">
+            <label for="runningDays">Running Days</label>
+            <select multiple class="form-control" id="runningDays" name="runningDays" required>
+                {% for day in days %}
+                    <option value="{{ day.id }}">{{ day.day }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary" name="add_route" >Create Route</button>
+    </form>
+</div>
+<br>
+<div class="container">
+    <h1 class="mt-4">Add Halts</h1>
+    <form method="post" action="#">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="route">Route</label>
+            <select class="form-control" id="route" name="route" required onchange="updateRouteDetails()">
+                <option value="">Select a route</option>
+                {% for route in routes %}
+                    <option value="{{ route.id }}" data-source="{{ route.source.name }}" data-destination="{{ route.destination.name }}" data-departure="{{ route.departure_time }}" data-arrival="{{ route.arrival_time }}" data-duration="{{ route.journey_duration }}">
+                        {{ route.name }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+        <div id="routeDetails" style="display: none;">
+            <h3>Route Details</h3>
+            <p><strong>Source:</strong> <span id="routeSource"></span></p>
+            <p><strong>Destination:</strong> <span id="routeDestination"></span></p>
+            <p><strong>Departure Time:</strong> <span id="routeDeparture"></span></p>
+            <p><strong>Arrival Time:</strong> <span id="routeArrival"></span></p>
+            <p><strong>Journey Duration:</strong> <span id="routeDuration"></span> minutes</p>
+        </div>
+        <div class="form-group">
+            <label for="stop">Stop</label>
+            <select class="form-control" id="stop" name="stop" required>
+                {% for stop in stops %}
+                    <option value="{{ stop.id }}">{{ stop.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="haltNumber">Halt Number</label>
+            <input type="number" class="form-control" id="haltNumber" name="haltNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="arrivalTime">Arrival Time</label>
+            <input type="time" class="form-control" id="arrivalTime" name="arrivalTime" required>
+        </div>
+        <div class="form-group">
+            <label for="departureTime">Departure Time</label>
+            <input type="time" class="form-control" id="departureTime" name="departureTime" required>
+        </div>
+        <button type="submit" class="btn btn-primary" name="add_halt" >Add Halt</button>
+    </form>
+</div>
+
+<script>
+    function updateRouteDetails() {
+        var routeSelect = document.getElementById('route');
+        var selectedOption = routeSelect.options[routeSelect.selectedIndex];
+        var routeDetails = document.getElementById('routeDetails');
+        
+        if (selectedOption.value) {
+            document.getElementById('routeSource').innerText = selectedOption.getAttribute('data-source');
+            document.getElementById('routeDestination').innerText = selectedOption.getAttribute('data-destination');
+            document.getElementById('routeDeparture').innerText = selectedOption.getAttribute('data-departure');
+            document.getElementById('routeArrival').innerText = selectedOption.getAttribute('data-arrival');
+            document.getElementById('routeDuration').innerText = selectedOption.getAttribute('data-duration');
+            routeDetails.style.display = 'block';
+        } else {
+            routeDetails.style.display = 'none';
+        }
+    }
+</script>
+{% endblock %}

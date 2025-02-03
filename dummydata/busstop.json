@@ -1,0 +1,93 @@
+[
+    {
+      "model": "busmanagement.stop",
+      "pk": 1,
+      "fields": {
+        "name": "Kashmere Gate ISBT",
+        "code": "DEL01",
+        "city": "New Delhi"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 2,
+      "fields": {
+        "name": "Anand Vihar ISBT",
+        "code": "DEL02",
+        "city": "New Delhi"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 3,
+      "fields": {
+        "name": "Majestic Bus Station",
+        "code": "BLR01",
+        "city": "Bangalore"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 4,
+      "fields": {
+        "name": "Chennai Mofussil Bus Terminus (CMBT)",
+        "code": "CHN01",
+        "city": "Chennai"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 5,
+      "fields": {
+        "name": "Mumbai Central Bus Station",
+        "code": "MUM01",
+        "city": "Mumbai"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 6,
+      "fields": {
+        "name": "Pune Shivajinagar Bus Stand",
+        "code": "PUN01",
+        "city": "Pune"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 7,
+      "fields": {
+        "name": "Hyderabad MGBS",
+        "code": "HYD01",
+        "city": "Hyderabad"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 8,
+      "fields": {
+        "name": "Ahmedabad Gita Mandir Bus Station",
+        "code": "AMD01",
+        "city": "Ahmedabad"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 9,
+      "fields": {
+        "name": "Bhopal ISBT",
+        "code": "BHO01",
+        "city": "Bhopal"
+      }
+    },
+    {
+      "model": "busmanagement.stop",
+      "pk": 10,
+      "fields": {
+        "name": "Jaipur Sindhi Camp",
+        "code": "JAI01",
+        "city": "Jaipur"
+      }
+    }
+  ]
+  
